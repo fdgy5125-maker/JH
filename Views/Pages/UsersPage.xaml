@@ -1,0 +1,78 @@
+<UserControl x:Class="MikrNSN.Views.Pages.UsersPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Background="#201638" Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Background="#2A2240" CornerRadius="10" Padding="12" Grid.Row="0">
+            <UniformGrid Rows="2" Columns="4">
+                <StackPanel>
+                    <TextBlock Text="اسم المستخدم" Foreground="White"/>
+                    <TextBox x:Name="UserNameText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="كلمة المرور" Foreground="White"/>
+                    <TextBox x:Name="PasswordText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="الباقة (Profile)" Foreground="White"/>
+                    <ComboBox x:Name="ProfileCombo"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="الصلاحية" Foreground="White"/>
+                    <TextBox x:Name="ValidityText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="الأيام" Foreground="White"/>
+                    <TextBox x:Name="DaysText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="الساعات" Foreground="White"/>
+                    <TextBox x:Name="HoursText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="الدقائق" Foreground="White"/>
+                    <TextBox x:Name="MinutesText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="كمية التحميل" Foreground="White"/>
+                    <TextBox x:Name="QuotaText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="الحد الأقصى للسرعة" Foreground="White"/>
+                    <TextBox x:Name="MaxRateText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="الملاحظات" Foreground="White"/>
+                    <TextBox x:Name="CommentText"/>
+                </StackPanel>
+            </UniformGrid>
+        </Border>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="8">
+            <Button Style="{StaticResource PrimaryButton}" Content="إضافة مستخدم" Click="Add_Click"/>
+            <Button Style="{StaticResource PrimaryButton}" Content="تعديل المستخدم" Click="Edit_Click"/>
+            <Button Style="{StaticResource PrimaryButton}" Content="حذف المستخدم" Click="Delete_Click"/>
+            <Button Style="{StaticResource PrimaryButton}" Content="تحديث القائمة" Click="Refresh_Click"/>
+            <Button Style="{StaticResource AccentButton}" Content="معرفة الباقة الحالية" Click="CurrentProfile_Click"/>
+        </StackPanel>
+
+        <Border Grid.Row="2" Background="#2A2240" CornerRadius="10" Padding="8">
+            <DataGrid x:Name="UsersGrid" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="اسم المستخدم" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="الباقة الحالية" Binding="{Binding Profile}"/>
+                    <DataGridTextColumn Header="الحالة" Binding="{Binding Disabled}"/>
+                    <DataGridTextColumn Header="تاريخ الإنشاء" Binding="{Binding CreationTime}"/>
+                    <DataGridTextColumn Header="آخر استخدام" Binding="{Binding LastLoggedOut}"/>
+                    <DataGridTextColumn Header="التحميل" Binding="{Binding LimitBytesTotal}"/>
+                    <DataGridTextColumn Header="الصلاحية" Binding="{Binding LimitUptime}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </Grid>
+</UserControl>

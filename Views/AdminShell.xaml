@@ -1,0 +1,31 @@
+<Window x:Class="MikrNSN.Views.AdminShell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="لوحة الإدارة" Height="720" Width="1180" WindowStartupLocation="CenterScreen" ResizeMode="CanResize">
+    <Grid Background="{StaticResource AppGradient}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="280"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Margin="18" Background="#201638" CornerRadius="16">
+            <ContentControl x:Name="ContentHost"/>
+        </Border>
+
+        <Border Grid.Column="1" Background="#2A2240" CornerRadius="0">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Margin="12">
+                    <TextBlock Text="القائمة" Foreground="White" FontSize="20" FontWeight="Bold"/>
+                </StackPanel>
+                <StackPanel Margin="12" VerticalAlignment="Top">
+                    <Button Style="{StaticResource PrimaryButton}" Content="الرئيسية" Click="Home_Click"/>
+                    <Button Style="{StaticResource AccentButton}" Content="الباقات" Click="Packages_Click"/>
+                    <Button Style="{StaticResource PrimaryButton}" Content="قوالب الكروت" Click="Templates_Click"/>
+                    <Button Style="{StaticResource PrimaryButton}" Content="طباعة كرت" Click="PrintCards_Click"/>
+                    <Button Style="{StaticResource PrimaryButton}" Content="المستخدمون" Click="Users_Click"/>
+                    <Button Style="{StaticResource PrimaryButton}" Content="المتصلون الآن" Click="Active_Click"/>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,29 @@
+<UserControl x:Class="MikrNSN.Views.Pages.ActiveUsersPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Background="#201638" Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="8">
+            <Button Style="{StaticResource PrimaryButton}" Content="تحديث" x:Name="RefreshBtn" Click="RefreshBtn_Click"/>
+        </StackPanel>
+
+        <Border Grid.Row="1" Background="#2A2240" CornerRadius="10" Padding="8">
+            <DataGrid x:Name="ActiveGrid" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="اسم المستخدم" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="IP Address" Binding="{Binding Address}"/>
+                    <DataGridTextColumn Header="MAC Address" Binding="{Binding MacAddress}"/>
+                    <DataGridTextColumn Header="الباقة" Binding="{Binding Service}"/>
+                    <DataGridTextColumn Header="مدة الاتصال" Binding="{Binding Uptime}"/>
+                    <DataGridTextColumn Header="التحميل/الرفع" Binding="{Binding Bytes}"/>
+                    <DataGridTextColumn Header="سرعة الاستخدام" Binding="{Binding Rate}"/>
+                    <DataGridTextColumn Header="الحالة" Binding="{Binding Status}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </Grid>
+</UserControl>

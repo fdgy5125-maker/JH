@@ -1,0 +1,114 @@
+<UserControl x:Class="MikrNSN.Views.Pages.UserManagerProfilesPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Background="#201638" Margin="16">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="380"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Background="#2A2240" CornerRadius="10" Padding="12" Grid.Row="0" Grid.ColumnSpan="2">
+            <UniformGrid Rows="2" Columns="6" Margin="4">
+                <StackPanel>
+                    <TextBlock Text="اسم الباقة" Foreground="White"/>
+                    <TextBox x:Name="NameText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Rate Limit" Foreground="White"/>
+                    <TextBox x:Name="RateText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Transfer Limit" Foreground="White"/>
+                    <TextBox x:Name="TransferText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Validity" Foreground="White"/>
+                    <TextBox x:Name="ValidityText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Price" Foreground="White"/>
+                    <TextBox x:Name="PriceText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="ملاحظة" Foreground="White"/>
+                    <TextBox x:Name="NoteText"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                    <Button Style="{StaticResource PrimaryButton}" Content="إضافة" Click="Add_Click"/>
+                    <Button Style="{StaticResource PrimaryButton}" Content="تعديل" Click="Edit_Click"/>
+                    <Button Style="{StaticResource PrimaryButton}" Content="حذف" Click="Delete_Click"/>
+                    <Button Style="{StaticResource AccentButton}" Content="تحديث" Click="Refresh_Click"/>
+                </StackPanel>
+            </UniformGrid>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="0" Background="#2A2240" CornerRadius="10" Padding="8" Margin="0,12,8,0">
+            <DataGrid x:Name="ProfilesGrid" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="ProfilesGrid_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="اسم الباقة" Binding="{Binding Profile.Name}"/>
+                    <DataGridTextColumn Header="Transfer" Binding="{Binding TransferDisplay}"/>
+                    <DataGridTextColumn Header="Download/Upload Limit" Binding="{Binding DlUlDisplay}"/>
+                    <DataGridTextColumn Header="Rate Limit" Binding="{Binding Profile.RateLimit}"/>
+                    <DataGridTextColumn Header="Validity" Binding="{Binding Profile.Validity}"/>
+                    <DataGridTextColumn Header="Price" Binding="{Binding Profile.Price}"/>
+                    <DataGridTextColumn Header="Owner" Binding="{Binding Profile.Owner}"/>
+                    <DataGridTextColumn Header="ملاحظة" Binding="{Binding Profile.Note}"/>
+                    <DataGridTemplateColumn Header="تحكم">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Style="{StaticResource PrimaryButton}" Content="تعديل" Click="RowEdit_Click"/>
+                                    <Button Style="{StaticResource PrimaryButton}" Content="حذف" Click="RowDelete_Click"/>
+                                    <Button Style="{StaticResource AccentButton}" Content="المستخدمون" Click="RowUsers_Click"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <Border Background="#261B3E" Padding="8">
+                            <StackPanel>
+                                <TextBlock Text="الحدود" Foreground="White" FontWeight="Bold"/>
+                                <ItemsControl ItemsSource="{Binding Limits}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="Transfer:" Foreground="#bbb"/>
+                                                <TextBlock Text="{Binding TransferLimit}" Foreground="White" Margin="8,0,0,0"/>
+                                                <TextBlock Text="Download:" Foreground="#bbb" Margin="16,0,0,0"/>
+                                                <TextBlock Text="{Binding DownloadLimit}" Foreground="White" Margin="8,0,0,0"/>
+                                                <TextBlock Text="Upload:" Foreground="#bbb" Margin="16,0,0,0"/>
+                                                <TextBlock Text="{Binding UploadLimit}" Foreground="White" Margin="8,0,0,0"/>
+                                                <TextBlock Text="Time:" Foreground="#bbb" Margin="16,0,0,0"/>
+                                                <TextBlock Text="{Binding TimeLimit}" Foreground="White" Margin="8,0,0,0"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="1" Background="#2A2240" CornerRadius="10" Padding="8" Margin="0,12,0,0">
+            <StackPanel>
+                <TextBlock Text="المرتبطة بالمستخدمين" Foreground="White" FontWeight="Bold"/>
+                <DataGrid x:Name="AssignmentsGrid" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="User" Binding="{Binding User}"/>
+                        <DataGridTextColumn Header="Profile" Binding="{Binding Profile}"/>
+                        <DataGridTextColumn Header="Created" Binding="{Binding Created}"/>
+                        <DataGridTextColumn Header="Owner" Binding="{Binding Owner}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

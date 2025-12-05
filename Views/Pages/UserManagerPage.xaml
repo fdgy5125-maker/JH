@@ -1,0 +1,155 @@
+<UserControl x:Class="MikrNSN.Views.Pages.UserManagerPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Background="#201638" Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Background="#2A2240" CornerRadius="10" Padding="12" Grid.Row="0">
+            <StackPanel>
+                <UniformGrid Rows="2" Columns="5" Margin="4">
+                <StackPanel>
+                    <TextBlock Text="الباقة (Profile)" Foreground="White"/>
+                    <ComboBox x:Name="ProfileCombo">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name}" Foreground="White"/>
+                                    <TextBlock Text="|" Foreground="#888" Margin="6,0,0,0"/>
+                                    <TextBlock Text="{Binding Validity}" Foreground="#BBB" Margin="6,0,0,0"/>
+                                    <TextBlock Text="{Binding RateLimit}" Foreground="#BBB" Margin="6,0,0,0"/>
+                                    <TextBlock Text="{Binding UptimeLimit}" Foreground="#BBB" Margin="6,0,0,0"/>
+                                    <TextBlock Text="{Binding TransferLimit}" Foreground="#BBB" Margin="6,0,0,0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="الاسم" Foreground="White"/>
+                    <TextBox x:Name="UserNameText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="كلمة المرور" Foreground="White"/>
+                    <TextBox x:Name="PasswordText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="الصلاحية" Foreground="White"/>
+                    <TextBox x:Name="ValidityText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="الوقت (أيام/ساعات/دقائق)" Foreground="White"/>
+                    <TextBox x:Name="TimeText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="كمية التحميل" Foreground="White"/>
+                    <TextBox x:Name="QuotaText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="الحد الأقصى للسرعة" Foreground="White"/>
+                    <TextBox x:Name="MaxRateText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="ملاحظات" Foreground="White"/>
+                    <TextBox x:Name="CommentText"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                    <Button Style="{StaticResource PrimaryButton}" Content="إضافة مستخدم" Click="Add_Click"/>
+                    <Button Style="{StaticResource PrimaryButton}" Content="تعديل مستخدم" Click="Edit_Click"/>
+                    <Button Style="{StaticResource PrimaryButton}" Content="حذف مستخدم" Click="Delete_Click"/>
+                        <Button Style="{StaticResource PrimaryButton}" Content="تحديث" Click="RefreshAll_Click"/>
+                        <Button Style="{StaticResource AccentButton}" Content="معرفة الباقة الحالية" Click="CurrentProfile_Click"/>
+                    </StackPanel>
+                </UniformGrid>
+
+                <Separator Margin="0,8,0,8"/>
+                <TextBlock Text="إعداد راوتر لـ User Manager" Foreground="White" FontWeight="Bold"/>
+                <UniformGrid Rows="1" Columns="6" Margin="4">
+                    <StackPanel>
+                        <TextBlock Text="الاسم" Foreground="White"/>
+                        <TextBox x:Name="RouterNameText"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="IP" Foreground="White"/>
+                        <TextBox x:Name="RouterIpText"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="Shared Secret" Foreground="White"/>
+                        <TextBox x:Name="RouterSecretText"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="CoA Port" Foreground="White"/>
+                        <TextBox x:Name="RouterCoaPortText"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="Timezone" Foreground="White"/>
+                        <TextBox x:Name="RouterTimezoneText"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                        <Button Style="{StaticResource PrimaryButton}" Content="إضافة راوتر" Click="AddRouter_Click"/>
+                    </StackPanel>
+                </UniformGrid>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="1" Margin="0,12,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Background="#2A2240" CornerRadius="10" Padding="8" Margin="0,0,8,0">
+                <StackPanel>
+                    <TextBlock Text="الباقات من UserManager" Foreground="White" FontWeight="Bold"/>
+                    <DataGrid x:Name="ProfilesGrid" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="الاسم" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="الصلاحية" Binding="{Binding Validity}"/>
+                            <DataGridTextColumn Header="السرعة" Binding="{Binding RateLimit}"/>
+                            <DataGridTextColumn Header="عدد المستخدمين" Binding="{Binding UsersAllowed}"/>
+                            <DataGridTextColumn Header="السعر" Binding="{Binding Price}"/>
+                            <DataGridTextColumn Header="ملاحظات" Binding="{Binding Comment}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="1" Background="#2A2240" CornerRadius="10" Padding="8">
+                <StackPanel>
+                    <TextBlock Text="المستخدمون من UserManager" Foreground="White" FontWeight="Bold"/>
+                    <DataGrid x:Name="UsersGrid" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="اسم المستخدم" Binding="{Binding Username}"/>
+                            <DataGridTextColumn Header="كلمة المرور" Binding="{Binding Password}"/>
+                            <DataGridTextColumn Header="الباقة" Binding="{Binding Profile}"/>
+                            <DataGridTextColumn Header="Uptime Used" Binding="{Binding UptimeUsed}"/>
+                            <DataGridTextColumn Header="Download Used" Binding="{Binding DownloadUsed}"/>
+                            <DataGridTextColumn Header="Upload Used" Binding="{Binding UploadUsed}"/>
+                            <DataGridTextColumn Header="ملاحظات" Binding="{Binding Comment}"/>
+                            <DataGridTextColumn Header="الحالة" Binding="{Binding Status}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Border Grid.Row="2" Background="#2A2240" CornerRadius="10" Padding="8" Margin="0,12,0,0">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource PrimaryButton}" Content="تحديث الجلسات" Click="RefreshSessions_Click"/>
+                </StackPanel>
+                <DataGrid x:Name="SessionsGrid" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="اسم المستخدم" Binding="{Binding Username}"/>
+                        <DataGridTextColumn Header="MAC" Binding="{Binding MacAddress}"/>
+                        <DataGridTextColumn Header="Download Used" Binding="{Binding DownloadUsed}"/>
+                        <DataGridTextColumn Header="Upload Used" Binding="{Binding UploadUsed}"/>
+                        <DataGridTextColumn Header="Uptime Used" Binding="{Binding UptimeUsed}"/>
+                        <DataGridTextColumn Header="Active" Binding="{Binding Active}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

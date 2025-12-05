@@ -1,0 +1,42 @@
+<Window x:Class="MikrNSN.Views.UsersManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="إدارة المستخدمين" Height="640" Width="980" WindowStartupLocation="CenterScreen">
+    <Grid Background="#1e1e1e">
+        <TabControl>
+            <TabItem Header="PPPoe">
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="8">
+                        <Button Content="تحديث" Width="100" Margin="4" Click="RefreshPpp_Click"/>
+                        <Button Content="إضافة" Width="100" Margin="4" Click="AddPpp_Click"/>
+                        <Button Content="تعديل" Width="100" Margin="4" Click="EditPpp_Click"/>
+                        <Button Content="حذف" Width="100" Margin="4" Click="DeletePpp_Click"/>
+                    </StackPanel>
+                    <DataGrid x:Name="PppGrid" AutoGenerateColumns="True" IsReadOnly="True"/>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Hotspot">
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="8">
+                        <Button Content="تحديث" Width="100" Margin="4" Click="RefreshHotspot_Click"/>
+                        <Button Content="إضافة" Width="100" Margin="4" Click="AddHotspot_Click"/>
+                        <Button Content="تعديل" Width="100" Margin="4" Click="EditHotspot_Click"/>
+                        <Button Content="حذف" Width="100" Margin="4" Click="DeleteHotspot_Click"/>
+                    </StackPanel>
+                    <DataGrid x:Name="HotspotGrid" AutoGenerateColumns="True" IsReadOnly="True"/>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Profiles">
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="8">
+                        <Button Content="تحديث" Width="100" Margin="4" Click="RefreshProfiles_Click"/>
+                        <Button Content="إضافة" Width="100" Margin="4" Click="AddProfile_Click"/>
+                        <Button Content="تعديل" Width="100" Margin="4" Click="EditProfile_Click"/>
+                        <Button Content="حذف" Width="100" Margin="4" Click="DeleteProfile_Click"/>
+                    </StackPanel>
+                    <DataGrid x:Name="ProfilesGrid" AutoGenerateColumns="True" IsReadOnly="True"/>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

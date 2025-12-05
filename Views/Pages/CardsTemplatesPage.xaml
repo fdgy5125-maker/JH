@@ -1,0 +1,97 @@
+<UserControl x:Class="MikrNSN.Views.Pages.CardsTemplatesPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Background="#201638" Margin="16">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="360"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Background="#2A2240" CornerRadius="10" Padding="12" Grid.Row="0" Grid.ColumnSpan="2">
+            <UniformGrid Rows="1" Columns="4">
+                <StackPanel>
+                    <TextBlock Text="عدد الكروت" Foreground="White"/>
+                    <TextBox x:Name="CardsCountText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="عدد الصفحات" Foreground="White"/>
+                    <TextBox x:Name="PageCountText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="الباقة المختارة" Foreground="White"/>
+                    <ComboBox x:Name="PackageCombo"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="قالب الطباعة" Foreground="White"/>
+                    <ComboBox x:Name="TemplateCombo"/>
+                </StackPanel>
+            </UniformGrid>
+        </Border>
+
+        <Border Background="#2A2240" CornerRadius="10" Padding="12" Grid.Row="1">
+            <UniformGrid Rows="3" Columns="4">
+                <StackPanel>
+                    <TextBlock Text="بداية الكرت" Foreground="White"/>
+                    <TextBox x:Name="StartNumberText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="نهاية الكرت" Foreground="White"/>
+                    <TextBox x:Name="EndNumberText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="كلمة السر" Foreground="White"/>
+                    <ComboBox x:Name="PasswordModeCombo">
+                        <ComboBoxItem Content="فراغة"/>
+                        <ComboBoxItem Content="تلقائي"/>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="نوع المستخدم" Foreground="White"/>
+                    <ComboBox x:Name="UserTypeCombo"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="العميل" Foreground="White"/>
+                    <ComboBox x:Name="BuyerCombo"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="نقطة البيع" Foreground="White"/>
+                    <ComboBox x:Name="PosCombo"/>
+                </StackPanel>
+                <CheckBox Content="رقم الكرت فقط" Foreground="White"/>
+                <CheckBox Content="رقم + اسم" Foreground="White"/>
+                <CheckBox Content="رقم + كلمة سر" Foreground="White"/>
+                <CheckBox Content="رقم + العميل" Foreground="White"/>
+                <CheckBox Content="عرض بطاقة واحدة في الصفحة" Foreground="White"/>
+                <StackPanel>
+                    <TextBlock Text="عدد المستخدمين داخل الصفحة" Foreground="White"/>
+                    <TextBox x:Name="UsersPerPageText"/>
+                </StackPanel>
+            </UniformGrid>
+        </Border>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" Margin="12">
+            <Button Style="{StaticResource PrimaryButton}" Content="عرض الكرت"/>
+            <Button Style="{StaticResource PrimaryButton}" Content="حفظ القالب"/>
+            <Button Style="{StaticResource PrimaryButton}" Content="تحديث القوالب"/>
+            <Button Style="{StaticResource AccentButton}" Content="طباعة تجريبية"/>
+        </StackPanel>
+
+        <Border Grid.Row="2" Grid.ColumnSpan="2" Background="#2A2240" CornerRadius="10" Padding="12">
+            <ScrollViewer>
+                <UniformGrid Columns="3" Rows="2" Margin="8">
+                    <Border Background="#3A175C" Height="160" Margin="8" CornerRadius="12"/>
+                    <Border Background="#3A175C" Height="160" Margin="8" CornerRadius="12"/>
+                    <Border Background="#3A175C" Height="160" Margin="8" CornerRadius="12"/>
+                    <Border Background="#3A175C" Height="160" Margin="8" CornerRadius="12"/>
+                    <Border Background="#3A175C" Height="160" Margin="8" CornerRadius="12"/>
+                    <Border Background="#3A175C" Height="160" Margin="8" CornerRadius="12"/>
+                </UniformGrid>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</UserControl>

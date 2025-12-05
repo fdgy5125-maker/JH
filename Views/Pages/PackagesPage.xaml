@@ -1,0 +1,88 @@
+<UserControl x:Class="MikrNSN.Views.Pages.PackagesPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Background="#201638" Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Background="#2A2240" CornerRadius="10" Padding="12" Grid.Row="0">
+            <UniformGrid Rows="2" Columns="5" Margin="4">
+                <StackPanel>
+                    <TextBlock Text="الاسم" Foreground="White"/>
+                    <TextBox x:Name="NameText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="الأيام" Foreground="White"/>
+                    <TextBox x:Name="DaysText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="الساعات" Foreground="White"/>
+                    <TextBox x:Name="HoursText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="الدقائق" Foreground="White"/>
+                    <TextBox x:Name="MinutesText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="كمية التحميل" Foreground="White"/>
+                    <TextBox x:Name="QuotaText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="الصلاحية" Foreground="White"/>
+                    <TextBox x:Name="ValidityText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="سرعة الرفع" Foreground="White"/>
+                    <TextBox x:Name="UpRateText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="سرعة التحميل" Foreground="White"/>
+                    <TextBox x:Name="DownRateText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="عمولة البياعة %" Foreground="White"/>
+                    <TextBox x:Name="CommissionText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="عدد المستخدمين" Foreground="White"/>
+                    <TextBox x:Name="UsersCountText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="السعر" Foreground="White"/>
+                    <TextBox x:Name="PriceText"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="المجموعة" Foreground="White"/>
+                    <ComboBox x:Name="GroupCombo"/>
+                </StackPanel>
+            </UniformGrid>
+        </Border>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="8">
+            <Button Style="{StaticResource PrimaryButton}" Content="إضافة" x:Name="AddBtn" Click="AddBtn_Click"/>
+            <Button Style="{StaticResource PrimaryButton}" Content="تعديل" x:Name="EditBtn" Click="EditBtn_Click"/>
+            <Button Style="{StaticResource PrimaryButton}" Content="حذف" x:Name="DeleteBtn" Click="DeleteBtn_Click"/>
+            <Button Style="{StaticResource PrimaryButton}" Content="تحديث" x:Name="RefreshBtn" Click="RefreshBtn_Click"/>
+        </StackPanel>
+
+        <Border Grid.Row="2" Background="#2A2240" CornerRadius="10" Padding="8">
+            <DataGrid x:Name="PackagesGrid" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="الاسم" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="الوقت" Binding="{Binding Time}"/>
+                    <DataGridTextColumn Header="الصلاحية" Binding="{Binding Validity}"/>
+                    <DataGridTextColumn Header="التحميل" Binding="{Binding Quota}"/>
+                    <DataGridTextColumn Header="السعر" Binding="{Binding Price}"/>
+                    <DataGridTextColumn Header="عمولة البياعة" Binding="{Binding Commission}"/>
+                    <DataGridTextColumn Header="السرعة" Binding="{Binding Rate}"/>
+                    <DataGridTextColumn Header="عدد المستخدمين" Binding="{Binding UsersCount}"/>
+                    <DataGridTextColumn Header="المجموعة" Binding="{Binding Group}"/>
+                    <DataGridTextColumn Header="حالة البروفايل" Binding="{Binding ProfileStatus}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </Grid>
+</UserControl>
